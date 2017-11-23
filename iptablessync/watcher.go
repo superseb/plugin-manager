@@ -52,12 +52,12 @@ func Watch(syncInterval int, mc metadata.Client) error {
 
 func (iptw *IPTablesWatcher) doSync() error {
 	for {
-		log.Debugf("iptablessync: sleeping for %v", iptw.syncInterval)
-		time.Sleep(iptw.syncInterval)
-
 		if err := iptw.checkAndHookChains(); err != nil {
 			log.Errorf("iptablessync: error doing sync: %v", err)
 		}
+
+		log.Debugf("iptablessync: sleeping for %v", iptw.syncInterval)
+		time.Sleep(iptw.syncInterval)
 	}
 }
 

@@ -46,12 +46,12 @@ func Watch(syncIntervalStr string) error {
 func doRouteSync(bridgeName, metadataIP string, syncInterval int) {
 	log.Infof("routesync: starting monitoring on bridge: %v, for metadataIP: %v every %v seconds", bridgeName, metadataIP, syncInterval)
 	for {
-		time.Sleep(time.Duration(syncInterval) * time.Second)
 		log.Debugf("routesync: time to sync routes")
 		err := addRouteToMetadataIP(bridgeName, metadataIP)
 		if err != nil {
 			log.Errorf("routesync: while syncing routes, got error: %v", err)
 		}
+		time.Sleep(time.Duration(syncInterval) * time.Second)
 	}
 }
 
